@@ -57,7 +57,9 @@ router.get('/locations/find/:search', function (req, res, next) {
 });
 
 router.get('/matches', function (req, res, next) {
-    userlib.getMatchList();
+    userlib.getMatchList(req.user, function (nearbyusers) {
+        res.json(nearbyusers);
+    });
 });
 
 router.get('/userInfo', function (req, res, next) {

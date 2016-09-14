@@ -11,6 +11,7 @@
         service.login = login;
         service.getToken = getToken;
         service.signOut = signOut;
+        
         service.isAuthenticated = isAuthenticated;
         service.user = {};
         function login(loginInfo, cb) {
