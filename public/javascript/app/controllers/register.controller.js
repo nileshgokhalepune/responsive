@@ -67,6 +67,8 @@
             DataSvc.registerUser($scope.userInfo).then(function (response) {
                 if(!response.data.success){
                     toastr.error(response.data.message);
+                }else{
+                    $state.go('home');
                 }
             }, function (error) {
 

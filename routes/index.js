@@ -70,4 +70,13 @@ router.get('/userInfo', function (req, res, next) {
     }
 });
 
+router.get('/distictplaces/:type', function (req, res, next) {
+    var params = req.params["type"];
+    if (params === "Country") {
+        userlib.distinct("users.location.terms", function (data) {
+            res.json({ success: true, countries: data });
+        });
+    }
+});
+
 module.exports = router;

@@ -11,6 +11,7 @@
         this.checkEmailExists = checkEmailExists;
         this.checkmates = checkmates;
         this.getUserInfo = getUserInfo;
+        this.getDistinctLocations = getDistinctLocations;
 
         function getLocations(searchText) {
             return $http({
@@ -48,10 +49,18 @@
             });
         }
 
-        function getUserInfo(){
+        function getUserInfo() {
             return $http({
                 url: '/api/userInfo',
-                method:'GET'
+                method: 'GET'
+            });
+        }
+
+
+        function getDistinctLocations(type) {
+            return $http({
+                url: '/api/distictplaces/' + type,
+                method: 'GET'
             });
         }
     }

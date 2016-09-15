@@ -10,7 +10,9 @@
         $scope.matchedUsers = [];
         $scope.showUsers = showUsers;
         $scope.logout = logout;
-
+        $scope.countries = [];
+        $scope.states = [];
+        $scope.cities = [];
         activate();
         function activate() {
             if (!authSvc.isAuthenticated()) $state.go('login');
@@ -24,10 +26,17 @@
                 }
                 debugger;
             });
+
+            DataSvc.getDistinctLocations('Country').then(function(response){
+                if(response.data.success == true){
+                    $scope.countries = response.data.countries;
+                }
+            },function(error){
+
+            })
         }
 
         function showUsers(location) {
-
             $scope.matches.forEach(function (val) {
                 if (val.Type === location.Type) {
                     $scope.matchedUsers = val.Users;
@@ -38,7 +47,7 @@
 
         function logout() {
             authSvc.signOut();
-            $state.go('home');
+            $state.reload('home');
         }
     }
 
