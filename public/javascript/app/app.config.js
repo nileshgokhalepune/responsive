@@ -20,5 +20,8 @@
             });
         $stateProvider
             .state('profile', { templateUrl: 'partials/profile', controller: 'profileCtrl' });
+  
+        $stateProvider
+            .state('home.maps', { url:'/home/maps', templateUrl: 'partials/maps', controller: 'mapsCtrl' });
     });
 })();

@@ -58,10 +58,10 @@ body {
     }
     .left,
     .right {
-        width: 25%;
+        width: 10%;
     }
     .center {
-        width: 50%;
+        width: 90%;
     }
     .square-container {
         width: 100%;

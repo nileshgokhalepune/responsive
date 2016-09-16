@@ -1,18 +1,11 @@
 div(class="mcontainer")
-    div(class="box left",style="background-color:red")
+    div(class="box left")
         ul(class="nav nav-pills nav-stacked")
             li(role="presentation") #[a(href="#",ui-sref="profile") Profile]
             li(role="presentation") #[a(href="#") Maps]
             li(role="presentation") #[a(href="#",ng-click="logout()") Logout]
-    div(class="box center") 
-        div(class="square-container")
-            div(class="square",ng-repeat="l in matches",ng-class="{'square-container-clicked': l.clicked}")
-                a(href="#",ng-click="showUsers(l)") {{l.Name}}
-    div(class="box right",style="background-color:blue")
+    div(class="box center" ui-view) 
+    div(class="box right")
         div(class="square",ng-repeat="uc in countries")
             span {{uc.Name}}
-    div(class="big square")
-        div(class="square",ng-repeat="u in matchedUsers")
-            span {{u.firstName}}
-        div(class="square",ng-if="!matchedUsers || matchedUsers.length <=0")
-            span There are no matches around your area. You can still connect to people based on the geolocations
+    
