@@ -5,8 +5,18 @@
         $urlRouterProvider.otherwise('/home');
 
         $stateProvider
-            .state('home', { url: '/home', templateUrl: 'partials/home', controller: 'homeCtrl' })
-
+            .state('home', {
+                url: '/home', templateUrl: 'partials/home', controller: 'homeCtrl'
+            })
+        $stateProvider
+            .state('home.activity', {
+                views: {
+                    'activity': {
+                        template: '<div ui-view="" />'
+                    }
+                },
+                abstract: true
+            })
         $stateProvider
             .state('login', { templateUrl: 'partials/login', controller: 'loginCtrl' });
 
@@ -20,8 +30,8 @@
             });
         $stateProvider
             .state('profile', { templateUrl: 'partials/profile', controller: 'profileCtrl' });
-  
+
         $stateProvider
-            .state('home.maps', { url:'/home/maps', templateUrl: 'partials/maps', controller: 'mapsCtrl' });
+            .state('home.activity.maps', { url: '/home/maps', templateUrl: 'partials/maps', controller: 'mapsCtrl' });
     });
 })();

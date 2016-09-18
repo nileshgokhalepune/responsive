@@ -1,7 +1,8 @@
 div(class="square-container")
     div(class="square",ng-repeat="l in matches",ng-class="{'square-container-clicked': l.clicked}")
-            a(href="#",ng-click="showUsers(l)") {{l.Name}}div(class="big square")
-div(class="square",ng-repeat="u in matchedUsers")
-    span {{u.firstName}}
-div(class="square",ng-if="!matchedUsers || matchedUsers.length <=0")
-    span There are no matches around your area. You can still connect to people based on the geolocations
+        a(ng-click="showUsers(l)") {{l.Name}}
+div(class="big square")
+    div(class="square",ng-repeat="u in matchedUsers")
+        a(ng-mouseover="showMenu()") {{u.firstName}}
+    div(class="square",ng-show="matchedUsers && matchedUsers.length <=0")
+        span There are no matches around your area. You can still connect to people based on the geolocations

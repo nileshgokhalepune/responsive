@@ -4,7 +4,7 @@ div(class="mcontainer")
             li(role="presentation") #[a(href="#",ui-sref="profile") Profile]
             li(role="presentation") #[a(href="#") Maps]
             li(role="presentation") #[a(href="#",ng-click="logout()") Logout]
-    div(class="box center" ui-view) 
+    div(class="box center" ui-view="activity") 
     div(class="box right")
         div(class="square",ng-repeat="uc in countries")
             span {{uc.Name}}

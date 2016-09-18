@@ -6,6 +6,7 @@
     mapsCtrl.$inject = ['$scope', 'DataSvc', 'authSvc'];
 
     function mapsCtrl($scope, DataSvc, authSvc) {
+        $scope.showUsers = showUsers;
         $scope.matches = [];
         $scope.matchedUsers = [];
         activate();
@@ -29,6 +30,15 @@
             }, function (error) {
 
             })
+        }
+        
+        function showUsers(location) {
+            $scope.matches.forEach(function (val) {
+                if (val.Type === location.Type) {
+                    $scope.matchedUsers = val.Users;
+                    location.clicked = true;
+                }
+            });
         }
     }
 
