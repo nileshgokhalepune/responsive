@@ -1,4 +1,5 @@
 var express = require('express');
+var path = require('path');
 var router = express.Router();
 var request = require('request');
 var database = require('../config/config');
@@ -17,6 +18,17 @@ router.post('/user/save', function (req, res, next) {
             return res.json({ success: true, message: 'Ready to rock' });
         }
     });
+});
+
+router.get('/user/image', function (req, res, next) {
+    var imagename = req.params.imagename;
+    var imagePath;
+    if (req.user) {
+        imagePath = path.join(__dirname, 'views', imagename);
+    } else {
+        imagePath = path.join(__dirname, 'views', "noimage.png");
+    }
+    res.sendFile(imagePath);
 });
 
 router.get('/user/exists/:search', function (req, res, next) {
@@ -64,7 +76,9 @@ router.get('/matches', function (req, res, next) {
 
 router.get('/userInfo', function (req, res, next) {
     if (req.user) {
-        res.json(req.user);
+        var user = req.user.toObject();
+        if (!user.image) user.image = encodeURI("/api/user/image?noimage.png");
+        res.json(user);
     } else {
         res.send(404);
     }
@@ -73,8 +87,12 @@ router.get('/userInfo', function (req, res, next) {
 router.get('/distictplaces/:type', function (req, res, next) {
     var params = req.params["type"];
     if (params === "Country") {
-        userlib.distinct("location.terms.value", null, function (data) {
-            res.json({ success: true, countries: data });
+        userlib.distinct(2, null, function (data) {
+            res.json({ success: true, data: data, type: 'Country' });
+        });
+    } else if (params === "State") {
+        userlib.distinct(1, null, function (data) {
+            res.json({ success: true, data: data, type: 'State' })
         });
     }
 });

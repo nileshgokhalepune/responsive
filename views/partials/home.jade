@@ -1,11 +1,13 @@
 div(class="mcontainer")
-    div(class="box left")
-        ul(class="nav nav-pills nav-stacked")
-            li(role="presentation") #[a(href="#",ui-sref="profile") Profile]
-            li(role="presentation") #[a(href="#") Maps]
+    div(class="left")
+        ul(class="nav nav-pills")
+            li(role="presentation") #[a(href="#",ui-sref="home.activity.profile") Profile]
+            li(role="presentation") #[a(href="#",ui-sref="home.activity.maps") Maps]
             li(role="presentation") #[a(href="#",ng-click="logout()") Logout]
-    div(class="box center" ui-view="activity") 
-    div(class="box right")
-        div(class="square",ng-repeat="uc in countries")
-            span {{uc.Name}}
+        div
+            span Countries
+            div(class="browseCountries",ng-repeat="uc in countries") 
+                a(ng-click="getChildren('')") {{uc._id}}
+    div(class="center" ui-view="activity") 
+    div(class="")
     

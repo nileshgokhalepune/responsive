@@ -29,7 +29,7 @@
                 }
             });
         $stateProvider
-            .state('profile', { templateUrl: 'partials/profile', controller: 'profileCtrl' });
+            .state('home.activity.profile', { templateUrl: 'partials/profile', controller: 'profileCtrl' });
 
         $stateProvider
             .state('home.activity.maps', { url: '/home/maps', templateUrl: 'partials/maps', controller: 'mapsCtrl' });

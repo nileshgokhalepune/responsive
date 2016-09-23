@@ -17,9 +17,17 @@
                 $state.go('login');
                 return;
             }
+
+            DataSvc.getDistinctLocations('Country').then(function (response) {
+                if (response.data.success == true) {
+                    $scope.countries = response.data.data;
+                }
+            }, function (error) {
+
+            });
+            
             $state.go('home.activity.maps');
         }
-
 
         function logout() {
             authSvc.signOut();

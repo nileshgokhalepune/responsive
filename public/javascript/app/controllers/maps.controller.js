@@ -22,14 +22,6 @@
                 }
                 debugger;
             });
-
-            DataSvc.getDistinctLocations('Country').then(function (response) {
-                if (response.data.success == true) {
-                    $scope.countries = response.data.countries;
-                }
-            }, function (error) {
-
-            })
         }
         
         function showUsers(location) {

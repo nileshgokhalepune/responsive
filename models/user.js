@@ -26,7 +26,8 @@ var userSchema = new Schema({
         required: true
     },
     location: Object,
-    dateOfBirth: String
+    dateOfBirth: String,
+    imageUrl:String
 });
 
 var userModel = mongoose.model('Users',userSchema);
