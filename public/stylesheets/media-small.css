@@ -51,23 +51,36 @@ a {
     width: 100%;
 }
 
-.center-container >div {
+.center-container >div {}
 
-}
-
-.square{
+.square {
     height: 30%;
     width: 30%;
-    border: 1px solid gray;
 }
 
-.user-pills{
-    height: 80px;
-    width:80px;
+.square .user-pills {
+    display: inline-block;
+    margin: 10px;
     border: 1px solid silver;
 }
 
-@media screen and (max-width:400px) {
+.square-container > .square {
+    height: 200px;
+    width: 33%;
+    display: inline-block;
+    margin: 2px;
+    border: 1px solid silver;
+}
+
+.user-pills {
+    height: 80px;
+    width: 80px;
+    border: 1px solid silver;
+    display: inline-block;
+    margin: 10px;
+}
+
+@media screen and (max-width:500px) {
     .footer-content {
         width: 100%;
         font-size: 8px;
@@ -77,8 +90,8 @@ a {
         display: flex;
         flex-direction: row;
     }
-    .footer-content>a{
-        color:red;
+    .footer-content>a {
+        color: red;
         text-decoration: none;
     }
     .footer {
@@ -87,4 +100,64 @@ a {
     .left {
         width: 100%;
     }
+    .user-pills {
+        height: 70px;
+        width: 70px;
+        border: 1px solid silver;
+        display: inline-block;
+        margin: 10px;
+    }
+    .square {
+        width: 100%;
+    }
+    .square > .user-pills {
+        width: 70px;
+        height: 70px;
+        display: inline-block;
+        margin: 10px;
+    }
+    .square > .square {
+        height: 100%;
+        width: 100%;
+    }
+    .user-pills-name {
+        font-size: 12px;
+    }
+    .user-pills > img {
+        width: 20px;
+        height: 20px;
+    }
+    .my-form {
+        width: 100%;
+    }
+    .my-form > input {
+        width: 100%;
+    }
+}
+
+.angular-google-map-container {
+    position: relative;
+    height: 50%;
+    width: 50%;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+
+#map_canvas {
+    width: 50%;
+    height: 50%;
+    margin: 10px;
+}
+
+.inline > .inline-pills {
+    display: inline-block;
+    margin: 10px;
+}
+ 
+ 
+ #map {
+    height:420px;
+    width:600px;
 }

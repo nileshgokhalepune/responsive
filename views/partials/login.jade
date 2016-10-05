@@ -1,5 +1,5 @@
 form(class="form-group")
-    div(class="row")
+    div(class="square")
         label(class="label label-default") Username
         input(type="text",class="form-control",ng-model="loginInfo.userName",required)
         label(class="label label-default") Password
@@ -7,9 +7,11 @@ form(class="form-group")
         div
             button(class="btn btn-success inline",ng-click="login()") Login
             a(class="btn btn-success  inline",ng-click="navigateTo()") Register 
-    div(class="row")
-        div(class="")
-            a(href="#",class="btn btn-block btn-social-icon btn-twitter inline")
+    div(class="square")
+        div(class="inline")
+            a(href="#",class="btn btn-block btn-social-icon btn-twitter inline-pills")
                 span(class="fa fa-twitter") 
-            a(href="#",class="btn btn-block btn-social-icon btn-facebook inline")
+            a(href="#",class="btn btn-block btn-social-icon btn-facebook inline-pills")
                 span(class="fa fa-facebook")
+    div(id="map") 
+             

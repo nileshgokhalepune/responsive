@@ -9,7 +9,7 @@ form(name="registerForm",class="form-group")
             label(class="label label-default") Last Name
             input(type="text",class="form-control",ng-model="userInfo.lastName",required)
             label(class="label label-default") Email
-            input(type="text",class="form-control",ng-model="userInfo.email",required,pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$",ng-change="isEmailExists()") 
+            input(type="email",class="form-control",ng-model="userInfo.email",required,ng-change="isEmailExists()") 
             label(class="label label-default") Gender
             select(class="form-control",ng-model="userInfo.gender",required)
                 option(value="M") Male

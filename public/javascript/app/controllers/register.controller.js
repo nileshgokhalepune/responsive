@@ -34,6 +34,7 @@
             }
         }
         $scope.selectLocation = function (location, $event) {
+            debugger;
             $scope.userInfo.location = location;
             $scope.sellocation = location.description;
             $scope.locations = [];
@@ -43,7 +44,7 @@
         $scope.isNameAvailable = function ($event) {
             DataSvc.isNameAvailable($scope.userInfo.userName).then(function (response) {
                 if (response.data.success == true) {
-                    toastr.warning('Username already exists'); 
+                    toastr.warning('Username ' + $scope.userInfo.userName + ' already exists'); 
                 }
             }, function (error) {
 

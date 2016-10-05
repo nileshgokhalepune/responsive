@@ -11,6 +11,7 @@ router.get('/', function (req, res, next) {
 });
 
 router.post('/user/save', function (req, res, next) {
+    getPlaceDetails(req.body.userInfo.location);
     userlib.save(req.body.userInfo, function (err, msg) {
         if (err) {
             return res.json({ success: false, message: msg });
@@ -21,12 +22,14 @@ router.post('/user/save', function (req, res, next) {
 });
 
 router.get('/user/image', function (req, res, next) {
-    var imagename = req.params.imagename;
+    var imagename = req.query.image;
     var imagePath;
     if (req.user) {
-        imagePath = path.join(__dirname, 'views', imagename);
+        //    imagePath = path.join(__dirname, 'images', imagename);
+        imagePath = path.join(__dirname, "../", "images", imagename); //path.join('/', 'images', imagename);
     } else {
-        imagePath = path.join(__dirname, 'views', "noimage.png");
+        imagePath = path.join(__dirname, "../", "images", "noimage.png"); //path.join('/', 'images', "noimage.png");
+        //imagePath = path.join(__dirname, 'images', "noimage.png");
     }
     res.sendFile(imagePath);
 });
@@ -65,6 +68,12 @@ router.get('/locations/find/:search', function (req, res, next) {
             var places = JSON.parse(body);
             console.log(places);
             res.json(places.predictions);
+            if (places && places.predictions && places.predictions.length > 0) {
+                getPlaceDetails(places.predictions[0], function (data) {
+
+                });
+            }
+
         });
 });
 
@@ -77,7 +86,7 @@ router.get('/matches', function (req, res, next) {
 router.get('/userInfo', function (req, res, next) {
     if (req.user) {
         var user = req.user.toObject();
-        if (!user.image) user.image = encodeURI("/api/user/image?noimage.png");
+        if (!user.image) user.image = encodeURI("/api/user/image?image=noimage.png");
         res.json(user);
     } else {
         res.send(404);
@@ -96,5 +105,20 @@ router.get('/distictplaces/:type', function (req, res, next) {
         });
     }
 });
+
+function getPlaceDetails(place, callback) {
+    var placeDetailApi = "https://maps.googleapis.com/maps/api/place/details/json?";
+    var placeid = "placeid=" + place.place_id;
+    var apikey = "&key=" + database.googleApiKey;
+    request.get({
+        url: placeDetailApi + placeid + apikey,
+        method: 'GET'
+    },
+        function (e, r, body) {
+            var place = JSON.parse(body);
+            callback(place.result.geometry.location);
+            debugger;
+        });
+}
 
 module.exports = router;
